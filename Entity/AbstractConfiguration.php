@@ -3,7 +3,6 @@
 namespace KunicMarko\SonataConfigurationPanelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use KunicMarko\SonataConfigurationPanelBundle\Traits\TimestampableTrait;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -27,12 +26,6 @@ use Sonata\AdminBundle\Form\FormMapper;
 
 abstract class AbstractConfiguration
 {
-    use TimestampableTrait;
-
-    const META_CATEGORY = 'Meta';
-    const GENERAL_CATEGORY = 'General';
-    const CATEGORIES = [self::META_CATEGORY, self::GENERAL_CATEGORY];
-    const CACHE_KEY = 'SonataConfigurationPanel';
     /**
      * @var integer
      *
@@ -57,12 +50,26 @@ abstract class AbstractConfiguration
     protected $value;
 
     /**
-     * @var string
-     * @Assert\Choice({"Meta", "General"})
-     * @Assert\NotBlank()
-     * @ORM\Column(name="category", type="string")
+     * @var \DateTime
+     * @ORM\Column(type="datetime")
      */
-    protected $category;
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
 
     /**
      * Get id
@@ -123,44 +130,25 @@ abstract class AbstractConfiguration
 
     public function __toString()
     {
-
-        if ($this->getName()) {
-            return $this->getName();
-        }
-        return 'New Item';
+        return $this->name !== null ?
+            $this->name :
+            'New Item';
     }
 
     /**
-     * Set category
-     *
-     * @param string $category
-     *
-     * @return $this
+     * @ORM\PrePersist
      */
-    public function setCategory($category)
+    public function prePersist()
     {
-        $this->category = $category;
-
-        return $this;
+        $this->createdAt = $this->updatedAt = new \DateTime();
     }
 
     /**
-     * Get category
-     *
-     * @return string
+     * @ORM\PreUpdate
      */
-    public function getCategory()
+    public function preUpdate()
     {
-        return $this->category;
-    }
-
-    /**
-     * Returns categories for sonata admin form
-     * @return array
-     */
-    public static function getCategories()
-    {
-        return array_combine(self::CATEGORIES, self::CATEGORIES);
+        $this->updatedAt = new \DateTime();
     }
 
     /**

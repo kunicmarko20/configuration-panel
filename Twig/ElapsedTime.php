@@ -8,7 +8,7 @@ class ElapsedTime extends \Twig_Extension
     public function getFilters()
     {
         return array(
-            new \Twig_SimpleFilter('elapsed', [$this, 'elapsedTimeFilter']),
+            new \Twig_SimpleFilter('elapsed', [$this, 'elapsed']),
         );
     }
 
@@ -16,7 +16,7 @@ class ElapsedTime extends \Twig_Extension
      * @param \DateTime|int $timestamp
      * @return string
      */
-    public function elapsedTimeFilter($timestamp)
+    public function elapsed($timestamp)
     {
         if ($timestamp instanceof \DateTime) {
             $timestamp = $timestamp->getTimestamp();
@@ -45,13 +45,5 @@ class ElapsedTime extends \Twig_Extension
             $numberOfUnits = floor($time / $unit);
             return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s ago':' ago');
         }
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return 'elapsed';
     }
 }

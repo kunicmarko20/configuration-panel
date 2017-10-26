@@ -5,6 +5,7 @@ namespace KunicMarko\SonataConfigurationPanelBundle\EventListener;
 use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\Common\Annotations\AnnotationReader;
 use KunicMarko\SonataConfigurationPanelBundle\Entity\AbstractConfiguration;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
 
 class DiscriminatorMapListener
 {
@@ -27,15 +28,18 @@ class DiscriminatorMapListener
     {
         $metadata = $event->getClassMetadata();
         $class = $metadata->getReflectionClass();
+
         if ($class->getName() !== AbstractConfiguration::class) {
             return;
         }
 
         $reader = new AnnotationReader;
+
         if (null !== $discriminatorMapAnnotation =
-                $reader->getClassAnnotation($class, 'Doctrine\ORM\Mapping\DiscriminatorMap')) {
+                $reader->getClassAnnotation($class, DiscriminatorMap::class)) {
             $discriminatorMap = $discriminatorMapAnnotation->value;
         }
+
         $newDiscriminatorMap = array_merge($discriminatorMap, $this->additionalTypes);
 
         $metadata->setDiscriminatorMap($newDiscriminatorMap);

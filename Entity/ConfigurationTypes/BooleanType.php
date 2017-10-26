@@ -14,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 */
 class BooleanType extends AbstractConfiguration
 {
-
     /**
      * Get value
      *
@@ -22,7 +21,7 @@ class BooleanType extends AbstractConfiguration
      */
     public function getValue()
     {
-        return $this->value ? true : false;
+        return (bool)$this->value;
     }
 
     /**

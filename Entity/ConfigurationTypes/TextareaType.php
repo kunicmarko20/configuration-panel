@@ -14,7 +14,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType as FormTextAreaType;
 */
 class TextareaType extends AbstractConfiguration
 {
-
     /**
      * {@inheritDoc}
      */
