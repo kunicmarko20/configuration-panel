@@ -14,7 +14,13 @@
             <argument/>
             <argument>%configuration_panel.admin.configuration.entity%</argument>
             <argument>%configuration_panel.admin.configuration.controller%</argument>
-            <call method="setSubClasses">
+            <call method="setCustomSubClasses">
+                <argument type="collection">
+                    <argument key="date">KunicMarko\SonataConfigurationPanelBundle\Entity\ConfigurationTypes\DateType</argument>
+                    <argument key="boolean">KunicMarko\SonataConfigurationPanelBundle\Entity\ConfigurationTypes\BooleanType</argument>
+                    <argument key="text">KunicMarko\SonataConfigurationPanelBundle\Entity\ConfigurationTypes\TextType</argument>
+                    <argument key="other">KunicMarko\SonataConfigurationPanelBundle\Entity\ConfigurationTypes\TextareaType</argument>
+                </argument>
                 <argument>%configuration_panel.types%</argument>
             </call>
         </service>

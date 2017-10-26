@@ -34,13 +34,9 @@ class ConfigurationAdmin extends AbstractAdmin
             ->add('createdAt', null, ['template' => 'ConfigurationPanelBundle:CRUD:list_field_created_at.html.twig'])
             ->add('_action', null, [
                 'actions' => [
-                    'edit' => [
-                        'template' => 'ConfigurationPanelBundle:CRUD:list_action_edit.html.twig',
-                    ],
-                    'delete' => [
-                        'template' => 'ConfigurationPanelBundle:CRUD:list_action_delete.html.twig',
-                    ],
-                ],
+                    'edit' => [],
+                    'delete' => [],
+                ]
             ]);
     }
 
@@ -60,5 +56,10 @@ class ConfigurationAdmin extends AbstractAdmin
             ->with('Content')
                 ->add('name', TextType::class);
         $object->generateFormField($formMapper);
+    }
+
+    public function setCustomSubClasses($subClasses, $additionalSubClasses)
+    {
+        $this->setSubClasses(array_merge($subClasses, $additionalSubClasses));
     }
 }

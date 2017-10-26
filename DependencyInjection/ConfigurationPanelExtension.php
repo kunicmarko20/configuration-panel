@@ -19,10 +19,10 @@ class ConfigurationPanelExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
         $container->setParameter('configuration_panel.types', $config['types']);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('admin.yml');
-        $loader->load('listener.yml');
-        $loader->load('repository.yml');
-        $loader->load('service.yml');
-        $loader->load('twig.yml');
+        $loader->load('admin.xml');
+        $loader->load('listener.xml');
+        $loader->load('repository.xml');
+        $loader->load('service.xml');
+        $loader->load('twig.xml');
     }
 }
