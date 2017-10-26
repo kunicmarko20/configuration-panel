@@ -2,10 +2,10 @@
 
 namespace KunicMarko\SonataConfigurationPanelBundle\EventListener;
 
-use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\Common\Annotations\AnnotationReader;
-use KunicMarko\SonataConfigurationPanelBundle\Entity\AbstractConfiguration;
+use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 use Doctrine\ORM\Mapping\DiscriminatorMap;
+use KunicMarko\SonataConfigurationPanelBundle\Entity\AbstractConfiguration;
 
 class DiscriminatorMapListener
 {
@@ -20,7 +20,7 @@ class DiscriminatorMapListener
     }
 
     /**
-     * Updates discrimantor map with new types
+     * Updates discrimantor map with new types.
      *
      * @param LoadClassMetadataEventArgs $event
      */
@@ -33,7 +33,7 @@ class DiscriminatorMapListener
             return;
         }
 
-        $reader = new AnnotationReader;
+        $reader = new AnnotationReader();
 
         if (null !== $discriminatorMapAnnotation =
                 $reader->getClassAnnotation($class, DiscriminatorMap::class)) {

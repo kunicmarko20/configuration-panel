@@ -19,6 +19,7 @@ class ConfigurationAdmin extends AbstractAdmin
             ->add('name')
             ->add('value');
     }
+
     /**
      * @param ListMapper $listMapper
      */
@@ -34,12 +35,12 @@ class ConfigurationAdmin extends AbstractAdmin
             ->add('_action', null, [
                 'actions' => [
                     'edit' => [
-                        'template' => 'ConfigurationPanelBundle:CRUD:list_action_edit.html.twig'
+                        'template' => 'ConfigurationPanelBundle:CRUD:list_action_edit.html.twig',
                     ],
                     'delete' => [
-                        'template' => 'ConfigurationPanelBundle:CRUD:list_action_delete.html.twig'
+                        'template' => 'ConfigurationPanelBundle:CRUD:list_action_delete.html.twig',
                     ],
-                ]
+                ],
             ]);
     }
 

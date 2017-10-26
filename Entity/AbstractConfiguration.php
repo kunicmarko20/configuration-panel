@@ -3,12 +3,12 @@
 namespace KunicMarko\SonataConfigurationPanelBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use Sonata\AdminBundle\Form\FormMapper;
 
 /**
- * AbstractConfiguration
+ * AbstractConfiguration.
  *
  * @ORM\Entity(repositoryClass="KunicMarko\SonataConfigurationPanelBundle\Repository\ConfigurationRepository")
  * @ORM\Table(name="configuration_panel")
@@ -23,11 +23,10 @@ use Sonata\AdminBundle\Form\FormMapper;
  *     "other"    = "KunicMarko\SonataConfigurationPanelBundle\Entity\ConfigurationTypes\TextareaType"
  * })
  */
-
 abstract class AbstractConfiguration
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -72,9 +71,9 @@ abstract class AbstractConfiguration
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -82,7 +81,7 @@ abstract class AbstractConfiguration
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -96,7 +95,7 @@ abstract class AbstractConfiguration
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -106,7 +105,7 @@ abstract class AbstractConfiguration
     }
 
     /**
-     * Set value
+     * Set value.
      *
      * @param string $value
      *
@@ -115,11 +114,12 @@ abstract class AbstractConfiguration
     public function setValue($value)
     {
         $this->value = $value;
+
         return $this;
     }
 
     /**
-     * Get value
+     * Get value.
      *
      * @return string
      */
@@ -152,14 +152,17 @@ abstract class AbstractConfiguration
     }
 
     /**
-     * Get template file used in sonata admin ListMapper
+     * Get template file used in sonata admin ListMapper.
+     *
      * @return string
      */
     abstract public function getTemplate();
 
     /**
-     * * Create form field for sonata create/edit form
+     * * Create form field for sonata create/edit form.
+     *
      * @param FormMapper $formMapper
+     *
      * @return void
      */
     abstract public function generateFormField(FormMapper $formMapper);

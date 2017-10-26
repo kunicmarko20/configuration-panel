@@ -4,16 +4,16 @@ namespace KunicMarko\SonataConfigurationPanelBundle\Twig;
 
 class ElapsedTime extends \Twig_Extension
 {
-    
     public function getFilters()
     {
-        return array(
+        return [
             new \Twig_SimpleFilter('elapsed', [$this, 'elapsed']),
-        );
+        ];
     }
 
     /**
      * @param \DateTime|int $timestamp
+     *
      * @return string
      */
     public function elapsed($timestamp)
@@ -26,12 +26,12 @@ class ElapsedTime extends \Twig_Extension
 
         $tokens = [
             31536000 => 'year',
-            2592000 => 'month',
-            604800 => 'week',
-            86400 => 'day',
-            3600 => 'hour',
-            60 => 'minute',
-            1 => 'second'
+            2592000  => 'month',
+            604800   => 'week',
+            86400    => 'day',
+            3600     => 'hour',
+            60       => 'minute',
+            1        => 'second',
         ];
 
         foreach ($tokens as $unit => $text) {
@@ -43,7 +43,8 @@ class ElapsedTime extends \Twig_Extension
                 continue;
             }
             $numberOfUnits = floor($time / $unit);
-            return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s ago':' ago');
+
+            return $numberOfUnits.' '.$text.(($numberOfUnits > 1) ? 's ago' : ' ago');
         }
     }
 }
