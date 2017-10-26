@@ -18,8 +18,7 @@ final class FindConfigurations
     {
         $queryBuilder = $this->entityManager->createQueryBuilder()
             ->select('c')
-            ->from(AbstractConfiguration::class, 'c', 'c.name')
-        ;
+            ->from(AbstractConfiguration::class, 'c', 'c.name');
 
         return $queryBuilder->getQuery()
             ->getArrayResult();

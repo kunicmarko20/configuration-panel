@@ -6,7 +6,7 @@ use KunicMarko\SonataConfigurationPanelBundle\Repository\FindConfigurations;
 
 class ConfigurationService
 {
-    /** @var array  */
+    /** @var array */
     private static $config = null;
 
     public function __construct(FindConfigurations $findConfigurations)
@@ -17,7 +17,7 @@ class ConfigurationService
     }
 
     /**
-     * Get All Values
+     * Get All Values.
      *
      * @return array
      */
@@ -27,17 +27,18 @@ class ConfigurationService
     }
 
     /**
-     * Get One value
+     * Get One value.
      *
      * @param string $name
+     *
      * @return mixed
      */
     public function getValueFor($name)
     {
         if (!array_key_exists($name, self::$config)) {
-            return null;
+            return;
         }
-        
+
         return self::$config[$name];
     }
 }
