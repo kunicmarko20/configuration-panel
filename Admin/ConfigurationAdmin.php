@@ -34,9 +34,9 @@ class ConfigurationAdmin extends AbstractAdmin
             ->add('createdAt', null, ['template' => 'ConfigurationPanelBundle:CRUD:list_field_created_at.html.twig'])
             ->add('_action', null, [
                 'actions' => [
-                    'edit' => [],
+                    'edit'   => [],
                     'delete' => [],
-                ]
+                ],
             ]);
     }
 
