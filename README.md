@@ -1,5 +1,9 @@
 Sonata Configuration Panel
 ============
+```
+ABANDONED, Please use SimpleConfigurationBundle
+```
+
 This bundle adds configuration panel to your sonata admin, also you can easily extend bundle and add your own types.
 
 
